@@ -99,7 +99,7 @@ func (this *Bootstrap) cloneRepositoties() error {
 		if sshUrl = serv.SshUrl(); len(sshUrl) < 1 {
 			return fmt.Errorf("Models.Service.SshUrl is found empty.")
 		}
-		if res, e := cloneGitRepo(sshUrl, name); e != nil {
+		if res, e := cloneGitRepo(sshUrl, path.Join(this.ProjectName, name)); e != nil {
 			log.Error("ServiceID '" + serv.ServiceID + "' Got error while git clone. Err: " + e.Error())
 
 		} else {
@@ -119,15 +119,15 @@ func cloneGitRepo(src string, destn string) (string, error) {
 	//        git clone $1 $2
 	//    fi
 
-	out, er := command.ExecGit("git", "-C", "status -s >/dev/null 2>", src)
+	/*out, er := command.ExecGit("git", "-C", destn, "status -s ", src)
 	if er != nil {
 		return out, er
-	} else {
-		log.Info(out)
-		if out, er := command.ExecGit("sh", "-c", "git clone", src, destn); er != nil {
-			return out, er
-		}
+	}*/ //else {
+	//	log.Info(out)
+	if out, er := command.ExecGit("sh", "-c", "git clone "+src+" "+destn); er != nil {
+		return out, er
 	}
+	//}
 	return "", nil
 }
 

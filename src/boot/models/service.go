@@ -27,8 +27,8 @@ func NewService() *Service {
 }
 
 func (ref *Service) SshUrl() string {
-	return ref.Repository
+	//return ref.Repository
 
 	//for ssh repo git ops
-	//return strings.Replace(ref.Repository, "https://github.com/", "git@github.com:", -1)
+	return strings.Replace(ref.Repository, "https://github.com/", "git@github.com:", -1)
 }

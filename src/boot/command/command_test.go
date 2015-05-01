@@ -7,7 +7,7 @@ import (
 
 func Test_Command(t *testing.T) {
 
-	if o, e := ExecGit("sh", "-c", "git status -C > shipped/test"); e != nil {
+	if o, e := ExecGit("sh", "-c", "git -C gittest status -s"); e != nil {
 		t.Fail()
 	} else {
 		log.Fatal("==OUT== ", o)
