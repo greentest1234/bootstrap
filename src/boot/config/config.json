@@ -1,0 +1,11 @@
+{
+	"settings":{
+		 "precheck": true,
+		 "downloadscripts": true
+	},
+	"url":{
+		"virtualboxurl":"http://download.virtualbox.org/virtualbox/4.3.22/VirtualBox-4.3.22-98236-OSX.dmg",
+		"hostport":"http://shipped-api.shipped-cisco.com:80"
+		 
+	}
+}
