@@ -26,7 +26,7 @@ func NewBootstrap(user *models.User, project_id string, projectName string, serv
 }
 
 const (
-	OS_MAC = "drawin"
+	OS_MAC = "darwin"
 )
 
 var curdir, _ = os.Getwd()
