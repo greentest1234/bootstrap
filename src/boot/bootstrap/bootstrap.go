@@ -43,7 +43,7 @@ func exec(f func() error) {
 }
 
 func (this *Bootstrap) Run() error {
-
+	return nil
 	if len(this.ProjectID) < 1 {
 		return fmt.Errorf("Found Null ProjectId")
 	}

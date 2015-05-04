@@ -1,9 +1,17 @@
 package main
+
 import (
 	"boot/bootstrap"
 	"boot/config"
+	"boot/handlers"
 	"boot/models"
 	"fmt"
+	"github.com/codegangsta/negroni"
+	"net/http"
+)
+
+const (
+	PORT = "8088"
 )
 
 func main() {
@@ -11,6 +19,8 @@ func main() {
 	//load config
 	config.LoadConfig()
 
+	//Initilize api
+	InitializeConfigApi()
 	//Initialize inputs
 	user := &models.User{}
 	user.ApiToken = "yZmnGXSURLIjHJWnepcrKhbuMYdPKgxO"
@@ -31,4 +41,24 @@ func main() {
 	if er := b.Run(); er == nil {
 		fmt.Println("Bootstap Completed !!")
 	}
+}
+
+func InitializeConfigApi() {
+	mux := http.NewServeMux()
+	n := negroni.Classic()
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "Please specify any api methods")
+	})
+
+	mux.HandleFunc("/GetShippedProjects", handler.GetShippedProjects)
+	mux.HandleFunc("/GetShippedProjectServices", handler.GetShippedProjectServices)
+	mux.HandleFunc("/GetShippedProjectEnvs", handler.GetShippedProjectEnvs)
+	mux.HandleFunc("/GetShippedBuildPacks", handler.GetShippedBuildPacks)
+	mux.HandleFunc("/GetShippedDependencies", handler.GetShippedDependencies)
+	mux.HandleFunc("/GetShippedProjectBuilds", handler.GetShippedProjectBuilds)
+
+	n.UseHandler(mux)
+	n.Run(":" + PORT)
+
 }
