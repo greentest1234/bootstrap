@@ -1,6 +1,13 @@
 package consts
 
 const (
+
+	//OS
+
+	OS_MAC   = "darwin"
+	OS_WIN   = "windows"
+	OS_LINUX = "linux"
+
 	PORT             = "8088"
 	APPLICATION_JSON = "application/json"
 	APPLICATION_XML  = "application/xml"

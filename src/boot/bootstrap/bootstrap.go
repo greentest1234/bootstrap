@@ -1,6 +1,7 @@
 package bootstrap
 
 import (
+	"boot/consts"
 	"boot/log"
 	"boot/models"
 	"fmt"
@@ -24,10 +25,6 @@ type Bootstrap struct {
 func NewBootstrap(user *models.User, project_id string, projectName string, services []models.Service) *Bootstrap {
 	return &Bootstrap{project_id, user, projectName, services}
 }
-
-const (
-	OS_MAC = "darwin"
-)
 
 var curdir, _ = os.Getwd()
 var VargantCwd = path.Join(curdir, ".shipped")
@@ -136,7 +133,7 @@ func cloneGitRepo(src string, destn string) (string, error) {
 func (this *Bootstrap) preverify() error {
 	log.Info("Pre-Verification Start")
 	//check OS
-	if runtime.GOOS != OS_MAC {
+	if runtime.GOOS != consts.OS_MAC {
 		return fmt.Errorf("Mac OS X not detected")
 	}
 
